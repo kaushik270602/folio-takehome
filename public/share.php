@@ -57,8 +57,15 @@ render_header('Share · ' . $doc['title'], $staff);
 
 <?php if ($created_token): ?>
     <div class="banner banner-success">
-        Share link ready:
-        <code>http://<?= h($_SERVER['HTTP_HOST']) ?>/view.php?token=<?= h($created_token) ?></code>
+        <p><strong>Private share link</strong> (tracks recipient):<br>
+        <code>http://<?= h($_SERVER['HTTP_HOST']) ?>/view.php?token=<?= h($created_token) ?></code></p>
+    </div>
+<?php endif ?>
+
+<?php if (!empty($doc['slug'])): ?>
+    <div class="banner banner-info">
+        <p><strong>Public document link</strong> (readable, not recipient-specific):<br>
+        <code>http://<?= h($_SERVER['HTTP_HOST']) ?>/view.php?slug=<?= h($doc['slug']) ?></code></p>
     </div>
 <?php endif ?>
 

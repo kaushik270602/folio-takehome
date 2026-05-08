@@ -332,3 +332,53 @@ table.data td.id {
     margin: 0;
     font-size: 0.95rem;
 }
+
+/* Status badges */
+.status {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 500;
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+}
+
+.status-published {
+    background: var(--success-bg);
+    color: var(--success-text);
+}
+
+.status-scheduled {
+    background: var(--warn-bg);
+    color: var(--warn-text);
+}
+
+/* Search form */
+.search-form {
+    margin-bottom: 1rem;
+}
+
+.form-field-inline {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.form-field-inline input[type=text] {
+    flex: 1;
+}
+
+.btn-small {
+    padding: 0.45rem 0.85rem;
+    font-size: 0.85rem;
+}
+
+/* Info banner */
+.banner-info {
+    background: #eff6ff;
+    color: #1e40af;
+    border-color: #bfdbfe;
+}
+
+.banner p {
+    margin: 0;
+}
