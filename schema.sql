@@ -10,8 +10,12 @@ CREATE TABLE documents (
     body TEXT NOT NULL,
     created_by INTEGER NOT NULL,
     created_at TEXT NOT NULL DEFAULT (datetime('now')),
+    slug TEXT DEFAULT NULL,
+    publish_at TEXT DEFAULT NULL,
     FOREIGN KEY (created_by) REFERENCES staff(id)
 );
+
+CREATE UNIQUE INDEX idx_documents_slug ON documents(slug);
 
 CREATE TABLE shares (
     id INTEGER PRIMARY KEY AUTOINCREMENT,

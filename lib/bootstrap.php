@@ -46,3 +46,33 @@ function random_token(int $bytes = 16): string {
 function h(string $s): string {
     return htmlspecialchars($s, ENT_QUOTES, 'UTF-8');
 }
+
+/**
+ * Generate a human-readable slug from a title + short random suffix.
+ * Format: "title-words-XXXX" where XXXX is a 4-char alphanumeric suffix.
+ * This gives readability while avoiding collisions.
+ */
+function generate_slug(string $title): string {
+    // Lowercase, strip non-alphanumeric, collapse dashes, trim
+    $base = strtolower(trim($title));
+    $base = preg_replace('/[^a-z0-9]+/', '-', $base);
+    $base = trim($base, '-');
+    // Truncate base to keep slug short (max 30 chars for the title part)
+    if (strlen($base) > 30) {
+        $base = substr($base, 0, 30);
+        $base = rtrim($base, '-');
+    }
+    // 4-char random suffix for collision avoidance
+    $suffix = substr(bin2hex(random_bytes(2)), 0, 4);
+    return $base . '-' . $suffix;
+}
+
+/**
+ * Check if a document is currently published (publish_at is null or in the past).
+ */
+function is_published(array $doc): bool {
+    if (empty($doc['publish_at'])) {
+        return true; // null means immediately published
+    }
+    return strtotime($doc['publish_at']) <= time();
+}
